@@ -1,4 +1,4 @@
-/*package com.Group11Project.ClassAttendanceSystem.Model;
+package com.Group11Project.ClassAttendanceSystem.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,4 +18,3 @@ public class Student {
     private String name;
     private int matric_number;
 }
-*/
