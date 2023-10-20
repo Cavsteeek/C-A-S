@@ -13,8 +13,8 @@ import lombok.*;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
     private Long id;
-    private String name;
+    private String f_name;
+    private String l_name;
     private int matric_number;
 }
