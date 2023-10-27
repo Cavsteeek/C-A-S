@@ -6,9 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Builder
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Getter
 @Setter
-public class StudentDto {
-
+public class StudentLoginRequest {
+    private int matricNumber;
+    private String password;
 }

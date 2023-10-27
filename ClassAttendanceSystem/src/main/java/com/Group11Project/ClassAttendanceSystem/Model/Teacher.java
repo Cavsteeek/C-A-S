@@ -1,10 +1,9 @@
 package com.Group11Project.ClassAttendanceSystem.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Builder
 @NoArgsConstructor
@@ -16,7 +15,12 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String f_name;
-    private String l_name;
-    private int staff_id;
+    private String fName;
+    private String lName;
+    private int staffId;
+    @Column(nullable = false, length = 8, name = "password")
+    private String password;
+    @Column(name = "create_time", nullable = false)
+    private LocalDateTime createTime;
+
 }

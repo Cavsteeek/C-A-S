@@ -5,19 +5,19 @@ CREATE DATABASE attendancesystem;
 USE attendancesystem;
 
 -- Create the "student" table
-CREATE TABLE student (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    f_name VARCHAR(50), -- 
-    l_name VARCHAR(50),
-    matric_number INT(6)
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    f_name VARCHAR(50) NOT NULL, -- 
+    l_name VARCHAR(50) NOT NULL,
+    matric_number VARCHAR(6) NOT NULL 
 );
 
 -- Create the "teacher" table
-CREATE TABLE teacher (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    f_name VARCHAR(50) -- 
-    l_name VARCHAR(50),
-    staff_id INT(6)
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+    f_name VARCHAR(50) NOT NULL, -- 
+    l_name VARCHAR(50) NOT NULL,
+    staff_id VARCHAR(6) NOT NULL
 );
 
 
