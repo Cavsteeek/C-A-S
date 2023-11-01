@@ -19,7 +19,7 @@ public class Student {
     private String fName;
     private String lName;
     private String matricNumber;
-    @Column(nullable = false, length = 8, name = "password")
+    @Column(nullable = false, length = 8, name = "stdnt_password")
     private String password;
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;

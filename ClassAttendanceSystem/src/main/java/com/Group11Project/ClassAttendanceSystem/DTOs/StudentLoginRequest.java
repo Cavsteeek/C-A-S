@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StudentLoginRequest {
+
     private int matricNumber;
     private String password;
 }

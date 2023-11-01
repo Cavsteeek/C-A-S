@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -18,8 +19,10 @@ public class Teacher {
     private String fName;
     private String lName;
     private int staffId;
-    @Column(nullable = false, length = 8, name = "password")
+
+    @Column(nullable = false, length = 8, name = "staff_password")
     private String password;
+
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
 
