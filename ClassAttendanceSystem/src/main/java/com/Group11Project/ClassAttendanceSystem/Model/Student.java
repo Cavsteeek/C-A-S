@@ -24,5 +24,9 @@ public class Student {
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
 
+    /*@Column(name = "role")
+    private Role role;*/
+
+
 
 }

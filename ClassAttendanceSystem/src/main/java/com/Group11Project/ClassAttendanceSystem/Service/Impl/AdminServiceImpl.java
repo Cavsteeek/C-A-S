@@ -9,6 +9,7 @@ import com.Group11Project.ClassAttendanceSystem.Service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +38,16 @@ public class AdminServiceImpl implements AdminService {
     public Optional<Teacher> findTeacherById(Long id)
     {
         return teacherRepository.findById(id);
+    }
+    @Override
+    public List<Student> findAllStudents()
+    {
+        return studentRepository.findAll();
+    }
+    @Override
+    public List<Teacher> findAllTeachers()
+    {
+        return teacherRepository.findAll();
     }
 
 

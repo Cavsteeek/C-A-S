@@ -9,4 +9,7 @@ public interface StudentService {
     Optional<Student> findById(Long id);
 
 
+    Student saveStudent(Student student);
+
+    Optional<Student> findByUsername(String username);
 }
