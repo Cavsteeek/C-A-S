@@ -10,12 +10,22 @@ import java.util.Optional;
 public interface TeacherService {
     Optional<Student> findStudentById(Long id);
 
-    //Optional<Teacher> findTeacherById(Long id);
     void deleteStudentById(Long id);
 
     List<Student> findAllStudents();
 
+    // Find course by name
+    List<Student> findStudentByfName(String fName);
+
+    // Find course by name
+    List<Student> findStudentBylName(String lName);
+
+    //Delete all students
+    void deleteStudents();
+
     void deleteARById(Long id);
+
+    void deleteRecord();
 
     Course saveCourse(Course course);
 
@@ -25,6 +35,14 @@ public interface TeacherService {
 
     Optional<Course> findCourseById(Long id);
 
+    List<Course> findBycName(String cName);
+
+    // Find course by title
+    List<Course> findCourseByTitle(String cTitle);
+
     // Find all courses
     List<Course> findAllCourses();
+
+    //Delete all courses
+    void deleteCourses();
 }

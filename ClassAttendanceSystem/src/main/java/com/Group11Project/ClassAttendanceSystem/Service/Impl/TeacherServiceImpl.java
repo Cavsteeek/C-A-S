@@ -33,20 +33,35 @@ public class TeacherServiceImpl implements TeacherService {
     public void deleteStudentById(Long id) {
         studentRepository.deleteById(id);
     }
-    /*@Override
-    public Optional<Teacher> findTeacherById(Long id)
-    {
-        return teacherRepository.findById(id);
-    }*/
     @Override // Find all Students
     public List<Student> findAllStudents()
     {
         return studentRepository.findAll();
     }
-    @Override // Delete Attendance Record By Id
+    @Override // Find course by first name
+    public List<Student> findStudentByfName(String fName){
+        return studentRepository.findByFirstName(fName);
+    }
+    @Override // Find student by last name
+    public List<Student> findStudentBylName(String lName){
+        return studentRepository.findByLastName(lName);
+    }
+    @Override //Delete all students
+    public void deleteStudents(){
+        studentRepository.deleteAll();
+    }
+
+
+    @Override // Delete Attendance Record By id
     public void deleteARById(Long id){
         attendanceRecordRepository.deleteById(id);
     }
+    @Override //Delete A whole record
+    public void deleteRecord(){
+        attendanceRecordRepository.deleteAll();
+    }
+
+
     @Override // Create Course
     public Course saveCourse(Course course){
         return courseRepository.save(course);
@@ -67,14 +82,22 @@ public class TeacherServiceImpl implements TeacherService {
     {
         return courseRepository.findById(id);
     }
-    @Override
-    public Optional<Course> findBycName(String cName){
-
+    @Override // Find course by name
+    public List<Course> findBycName(String cName){
+        return courseRepository.findBycName(cName);
+    }
+    @Override // Find course by title
+    public List<Course> findCourseByTitle(String cTitle){
+        return courseRepository.findBycTitle(cTitle);
     }
     @Override // Find all courses
     public List<Course> findAllCourses()
     {
         return courseRepository.findAll();
+    }
+    @Override //Delete all courses
+    public void deleteCourses(){
+        courseRepository.deleteAll();
     }
 
 }
