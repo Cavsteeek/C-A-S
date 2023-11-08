@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,8 +25,8 @@ public class Student {
     @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
 
-    /*@Column(name = "role")
-    private Role role;*/
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AttendanceRecord> attendanceRecords;
 
 
 

@@ -8,6 +8,7 @@ import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,13 +67,22 @@ public class TeacherServiceImpl implements TeacherService {
     public Course saveCourse(Course course){
         return courseRepository.save(course);
     }
-    @Override // Update Course By id
-    public Course updateCourseById(Course course){
-        Course existingCourse = courseRepository.findById(course.getId()).get();
-        existingCourse.setCName(course.getCName());
-        existingCourse.setCTitle(course.getCTitle());
-        return courseRepository.save(course);
+
+    @Override
+    public ResponseEntity<Course> updateCourseById(Long id, Course course) {
+        Optional<Course> optionalCourse = courseRepository.findById(course.getId());
+        if (optionalCourse.isPresent()) {
+            Course existingCourse = optionalCourse.get();
+            existingCourse.setCName(course.getCName());
+            existingCourse.setCTitle(course.getCTitle());
+            courseRepository.save(existingCourse);
+            return ResponseEntity.ok(existingCourse); // 200 OK with the updated course
+        } else {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
     }
+
+
     @Override // Delete Course By Id
     public void deleteCourseById(Long id){
         courseRepository.deleteById(id);

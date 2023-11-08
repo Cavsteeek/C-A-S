@@ -2,7 +2,7 @@ package com.Group11Project.ClassAttendanceSystem.Service;
 
 import com.Group11Project.ClassAttendanceSystem.Model.Course;
 import com.Group11Project.ClassAttendanceSystem.Model.Student;
-import com.Group11Project.ClassAttendanceSystem.Model.Teacher;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +29,7 @@ public interface TeacherService {
 
     Course saveCourse(Course course);
 
-    Course updateCourseById(Course course);
+    ResponseEntity<Course> updateCourseById(Long id, Course course);
 
     void deleteCourseById(Long id);
 
@@ -45,4 +45,5 @@ public interface TeacherService {
 
     //Delete all courses
     void deleteCourses();
+
 }
