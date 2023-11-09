@@ -52,11 +52,11 @@ public class AdminServiceImpl implements AdminService {
     }
     @Override // Find student by first name
     public List<Student> findStudentByfName(String fName){
-        return studentRepository.findByFirstName(fName);
+        return studentRepository.findByfName(fName);
     }
     @Override // Find student by last name
     public List<Student> findStudentBylName(String lName){
-        return studentRepository.findByLastName(lName);
+        return studentRepository.findBylName(lName);
     }
     @Override //Delete all students
     public void deleteStudents(){

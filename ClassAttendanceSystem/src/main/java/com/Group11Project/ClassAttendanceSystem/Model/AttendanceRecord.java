@@ -11,12 +11,17 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "att_record")
 public class AttendanceRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "create_time", nullable = false)
     private LocalDateTime createTime;
+
     @ManyToOne
-    @JoinColumn
     private Student student;
+
+    @ManyToOne
+    private Course course;
 }

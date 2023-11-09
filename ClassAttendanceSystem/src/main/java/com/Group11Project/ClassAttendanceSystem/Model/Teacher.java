@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder
 @Entity
@@ -23,7 +24,7 @@ public class Teacher {
     @Column(nullable = false, length = 8, name = "staff_password")
     private String password;
 
-    @Column(name = "create_time", nullable = false)
-    private LocalDateTime createTime;
+
+
 
 }

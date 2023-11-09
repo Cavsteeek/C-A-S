@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,11 +23,13 @@ public class Student {
     private String matricNumber;
     @Column(nullable = false, length = 8, name = "stdnt_password")
     private String password;
-    @Column(name = "create_time", nullable = false)
-    private LocalDateTime createTime;
+    /*@Column(name = "create_time", nullable = false)
+    private LocalDateTime createTime;*/
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AttendanceRecord> attendanceRecords;
+
+
 
 
 

@@ -13,8 +13,8 @@ import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
     //Optional<Student> findByUsername(String username);
-    List<Student> findByFirstName(String fName);
-    List<Student> findByLastName(String lName);
+    List<Student> findByfName(String fName);
+    List<Student> findBylName(String lName);
 
 
 }

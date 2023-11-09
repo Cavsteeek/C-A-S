@@ -9,11 +9,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 public class CASApplication {
 
-	@Bean
+	/*@Bean
 	public PasswordEncoder passwordEncoder()
 	{
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(CASApplication.class, args);

@@ -5,7 +5,7 @@ import com.Group11Project.ClassAttendanceSystem.Model.Student;
 import com.Group11Project.ClassAttendanceSystem.Repository.AttendanceRecordRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.CourseRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
-import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
+// import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class TeacherServiceImpl implements TeacherService {
 
     private final StudentRepository studentRepository;
-    private final TeacherRepository teacherRepository;
+    // private final TeacherRepository teacherRepository;
     private final AttendanceRecordRepository attendanceRecordRepository;
     private final CourseRepository courseRepository;
 
@@ -41,11 +41,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
     @Override // Find student by first name
     public List<Student> findStudentByfName(String fName){
-        return studentRepository.findByFirstName(fName);
+        return studentRepository.findByfName(fName);
     }
     @Override // Find student by last name
     public List<Student> findStudentBylName(String lName){
-        return studentRepository.findByLastName(lName);
+        return studentRepository.findBylName(lName);
     }
     @Override //Delete all students
     public void deleteStudents(){
