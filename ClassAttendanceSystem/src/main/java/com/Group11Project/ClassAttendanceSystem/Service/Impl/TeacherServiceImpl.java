@@ -39,7 +39,7 @@ public class TeacherServiceImpl implements TeacherService {
     {
         return studentRepository.findAll();
     }
-    @Override // Find course by first name
+    @Override // Find student by first name
     public List<Student> findStudentByfName(String fName){
         return studentRepository.findByFirstName(fName);
     }
