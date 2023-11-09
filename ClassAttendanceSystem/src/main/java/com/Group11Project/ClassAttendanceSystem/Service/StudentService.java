@@ -6,10 +6,10 @@ import java.util.Optional;
 
 public interface StudentService {
 
-    Optional<Student> findById(Long id);
+    /*Optional<Student> findById(Long id);
 
 
     Student saveStudent(Student student);
 
-    Optional<Student> findByUsername(String username);
+    Optional<Student> findByUsername(String username);*/
 }

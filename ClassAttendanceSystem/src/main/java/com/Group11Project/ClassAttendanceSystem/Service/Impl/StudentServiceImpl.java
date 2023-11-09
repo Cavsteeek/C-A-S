@@ -15,7 +15,7 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-    private PasswordEncoder passwordEncoder;
+   /* private PasswordEncoder passwordEncoder;
 
     @Override
     public Optional<Student> findById(Long id)
@@ -28,8 +28,10 @@ public class StudentServiceImpl implements StudentService {
         student.setCreateTime(LocalDateTime.now());
         return studentRepository.save(student);
     }
-    @Override
+    /*@Override
     public Optional<Student> findByUsername(String username) {
         return studentRepository.findByUsername(username);
     }
+
+     */
 }
