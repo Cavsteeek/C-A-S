@@ -6,7 +6,6 @@ import com.Group11Project.ClassAttendanceSystem.Service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -83,7 +82,7 @@ public class TeacherController {
         return new ResponseEntity<>(course1, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update-course-details/{id}") //Update course details by id
+    @PutMapping("/update-course/{id}") //Update course details by id
     public ResponseEntity<Course> updateCourseById(@PathVariable("id") Long id, @RequestBody Course course)
     {
         course.setId(id);
@@ -116,7 +115,7 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("/get-course/{lName}") // get course by title
+    @GetMapping("/get-course/{cTitle}") // get course by title
     public ResponseEntity<List<Course>> findCourseByTitle(String cTitle)
     {
         List<Course> courses = teacherService.findCourseByTitle(cTitle);

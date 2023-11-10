@@ -104,7 +104,7 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/get-course/{lName}") // get course by title
+    @GetMapping("/get-course/{cTitle}") // get course by title
     public ResponseEntity<List<Course>> findCourseByTitle(String cTitle) {
         List<Course> courses = adminService.findCourseByTitle(cTitle);
         if (!courses.isEmpty()) {
