@@ -21,17 +21,23 @@ public class TeacherController {
     @GetMapping("/get-student/{id}") //get student by id
     public ResponseEntity<Optional<Student>> findStudentById(@PathVariable("id") Long id)
     {
-        Optional<Student> student = teacherService.findStudentById(id);
-        if (student.isPresent()){
-            return new ResponseEntity<>(student, HttpStatus.OK);
+        try {
+            Optional<Student> student = teacherService.findStudentById(id);
+            if (student.isPresent()) {
+                return new ResponseEntity<>(student, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
     }
 
     @DeleteMapping("/delete-student/{id}") //delete student by id
-    public ResponseEntity<Void> deleteStudentById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteStudentById(@PathVariable("id") Long id){
         teacherService.deleteStudentById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -47,8 +53,8 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("/get-student/{fName}") //Get student by first name
-    public ResponseEntity<List<Student>> findByfName(String fName){
+    @GetMapping("/get-student-by-fname/{fName}") //Get student by first name
+    public ResponseEntity<List<Student>> findByfName(@PathVariable("fName")String fName){
         List<Student> students = teacherService.findStudentByfName(fName);
         if (!students.isEmpty()){
             return new ResponseEntity<>(students, HttpStatus.OK);
@@ -58,8 +64,8 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("/get-student/{lName}") //Get student by last name
-    public ResponseEntity<List<Student>> findBylName(String lName){
+    @GetMapping("/get-student-by-lname/{lName}") //Get student by last name
+    public ResponseEntity<List<Student>> findBylName(@PathVariable("lName")String lName){
         List<Student> students = teacherService.findStudentBylName(lName);
         if (!students.isEmpty()){
             return new ResponseEntity<>(students, HttpStatus.OK);
@@ -102,7 +108,7 @@ public class TeacherController {
         return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/get-course/{cName}") // get course by name
+    @GetMapping("/get-course-by-cname/{cName}") // get course by name
     public ResponseEntity<List<Course>> findCourseByName(String cName)
     {
         List<Course> courses = teacherService.findBycName(cName);
@@ -115,7 +121,7 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("/get-course/{cTitle}") // get course by title
+    @GetMapping("/get-course-by-ctitle/{cTitle}") // get course by title
     public ResponseEntity<List<Course>> findCourseByTitle(String cTitle)
     {
         List<Course> courses = teacherService.findCourseByTitle(cTitle);
@@ -139,15 +145,20 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("get-course/{id}") // get student by id
+    @GetMapping("get-course-by-id/{id}") // get student by id
     public ResponseEntity<Optional<Course>> findCourseById(@PathVariable Long id)
     {
-        Optional<Course> course = teacherService.findCourseById(id);
-        if (course.isPresent()){
-            return new ResponseEntity<>(course, HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            Optional<Course> course = teacherService.findCourseById(id);
+            if (course.isPresent()) {
+                return new ResponseEntity<>(course, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

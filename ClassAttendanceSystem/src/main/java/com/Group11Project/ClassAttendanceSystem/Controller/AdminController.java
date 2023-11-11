@@ -20,12 +20,19 @@ public class AdminController {
 
     @GetMapping("/get-student/{id}") //get student by id
     public ResponseEntity<Optional<Student>> findStudentById(@PathVariable("id") Long id) {
-        Optional<Student> student = adminService.findStudentById(id);
-        if (student.isPresent()) {
-            return new ResponseEntity<>(student, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            Optional<Student> student = adminService.findStudentById(id);
+            if (student.isPresent()) {
+                return new ResponseEntity<>(student, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @DeleteMapping("/delete-student/{id}") //delete student by id
@@ -44,8 +51,8 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/get-student/{fName}") //Get student by first name
-    public ResponseEntity<List<Student>> findByfName(String fName) {
+    @GetMapping("/get-student-by-fname/{fName}") //Get student by first name
+    public ResponseEntity<List<Student>> findByfName(@PathVariable ("fName") String fName) {
         List<Student> students = adminService.findStudentByfName(fName);
         if (!students.isEmpty()) {
             return new ResponseEntity<>(students, HttpStatus.OK);
@@ -54,8 +61,8 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/get-student/{lName}") //Get student by last name
-    public ResponseEntity<List<Student>> findBylName(String lName) {
+    @GetMapping("/get-student-by-lname/{lName}") //Get student by last name
+    public ResponseEntity<List<Student>> findBylName(@PathVariable ("lName")String lName) {
         List<Student> students = adminService.findStudentBylName(lName);
         if (!students.isEmpty()) {
             return new ResponseEntity<>(students, HttpStatus.OK);
@@ -94,8 +101,8 @@ public class AdminController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/get-course/{cName}") // get course by name
-    public ResponseEntity<List<Course>> findCourseByName(String cName) {
+    @GetMapping("/get-course-by-cname/{cName}") // get course by name
+    public ResponseEntity<List<Course>> findCourseByName(@PathVariable("cName")String  cName) {
         List<Course> courses = adminService.findBycName(cName);
         if (!courses.isEmpty()) {
             return new ResponseEntity<>(courses, HttpStatus.OK);
@@ -104,8 +111,8 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/get-course/{cTitle}") // get course by title
-    public ResponseEntity<List<Course>> findCourseByTitle(String cTitle) {
+    @GetMapping("/get-course-by-ctitle/{cTitle}") // get course by title
+    public ResponseEntity<List<Course>> findCourseByTitle(@PathVariable("cTitle")String cTitle) {
         List<Course> courses = adminService.findCourseByTitle(cTitle);
         if (!courses.isEmpty()) {
             return new ResponseEntity<>(courses, HttpStatus.OK);
@@ -124,14 +131,21 @@ public class AdminController {
         }
     }
 
-    @GetMapping("get-course/{id}") // get student by id
-    public ResponseEntity<Optional<Course>> findCourseById(@PathVariable Long id) {
-        Optional<Course> course = adminService.findCourseById(id);
-        if (course.isPresent()) {
-            return new ResponseEntity<>(course, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("get-course-by-id/{id}") // get student by id
+    public ResponseEntity<Optional<Course>> findCourseById(@PathVariable("id") Long id) {
+        try {
+            Optional<Course> course = adminService.findCourseById(id);
+            if (course.isPresent()) {
+                return new ResponseEntity<>(course, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @DeleteMapping("/delete-all-courses") // delete all courses
