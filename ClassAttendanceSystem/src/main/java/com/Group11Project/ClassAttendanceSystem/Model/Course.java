@@ -15,11 +15,11 @@ import java.util.Set;
 @Table(name = "courses")
 public class Course {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "cName", nullable = false)
+    @Column(name = "cName", nullable = true)
     private String cName;
-    @Column(name = "cTitle", nullable = false)
+    @Column(name = "cTitle", nullable = true)
     private String cTitle;
 
     @ManyToMany

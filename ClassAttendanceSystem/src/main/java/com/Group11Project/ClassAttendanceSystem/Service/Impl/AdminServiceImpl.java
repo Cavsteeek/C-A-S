@@ -72,22 +72,32 @@ public class AdminServiceImpl implements AdminService {
     }
     @Override // Create Course
     public Course saveCourse(Course course){
-        return courseRepository.save(course);
+        Course course1 =courseRepository.save(course);
+        return course1;
     }
 
     @Override
     public ResponseEntity<Course> updateCourseById(Long id, Course course) {
-        Optional<Course> optionalCourse = courseRepository.findById(course.getId());
+        Optional<Course> optionalCourse = courseRepository.findById(id);
         if (optionalCourse.isPresent()) {
             Course existingCourse = optionalCourse.get();
-            existingCourse.setCName(course.getCName());
-            existingCourse.setCTitle(course.getCTitle());
+
+            if (course.getCName() != null) {
+                existingCourse.setCName(course.getCName());
+            }
+
+            if (course.getCTitle() != null) {
+                existingCourse.setCTitle(course.getCTitle());
+            }
+
             courseRepository.save(existingCourse);
+
             return ResponseEntity.ok(existingCourse); // 200 OK with the updated course
         } else {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
     }
+
 
 
     @Override // Delete Course By Id

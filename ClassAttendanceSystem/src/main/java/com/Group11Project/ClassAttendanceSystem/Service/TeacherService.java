@@ -27,7 +27,7 @@ public interface TeacherService {
 
     void deleteRecord();
 
-    Course saveCourse(Course course);
+    public Course saveCourse(Course course);
 
     ResponseEntity<Course> updateCourseById(Long id, Course course);
 

@@ -108,12 +108,12 @@ public class TeacherController {
         }
     }
 
-    @PostMapping("/add-course") // create new course
+    @PostMapping("/new-course") // create new course
     public ResponseEntity<Course> newCourse (@RequestBody Course course)
     {
         try {
             Course course1 = teacherService.saveCourse(course);
-            return new ResponseEntity<>(course1, HttpStatus.CREATED);
+            return new ResponseEntity<>(course, HttpStatus.CREATED);
         } catch (Exception e) {
             // Log the exception
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class TeacherController {
     }
 
     @GetMapping("/get-course-by-cname/{cName}") // get course by name
-    public ResponseEntity<List<Course>> findCourseByName(String cName)
+    public ResponseEntity<List<Course>> findCourseByName(@PathVariable("cName")String cName)
     {
         List<Course> courses = teacherService.findBycName(cName);
         if (!courses.isEmpty())
@@ -168,7 +168,7 @@ public class TeacherController {
     }
 
     @GetMapping("/get-course-by-ctitle/{cTitle}") // get course by title
-    public ResponseEntity<List<Course>> findCourseByTitle(String cTitle)
+    public ResponseEntity<List<Course>> findCourseByTitle(@PathVariable("cTitle")String cTitle)
     {
         List<Course> courses = teacherService.findCourseByTitle(cTitle);
         if (!courses.isEmpty())

@@ -103,7 +103,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/add-course") // create new course
+    @PostMapping("/new-course") // create new course
     public ResponseEntity<Course> newCourse(@RequestBody Course course) {
         try {
             Course course1 = adminService.saveCourse(course);
