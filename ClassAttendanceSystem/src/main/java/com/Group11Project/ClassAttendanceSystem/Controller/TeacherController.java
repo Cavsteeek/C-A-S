@@ -119,7 +119,6 @@ public class TeacherController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @PutMapping("/update-course/{id}") //Update course details by id

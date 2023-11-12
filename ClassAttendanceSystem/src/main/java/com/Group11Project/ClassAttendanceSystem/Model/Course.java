@@ -17,9 +17,9 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "cName", nullable = true)
+    @Column(name = "c_name", nullable = false)
     private String cName;
-    @Column(name = "cTitle", nullable = true)
+    @Column(name = "c_title", nullable = false)
     private String cTitle;
 
     @ManyToMany
