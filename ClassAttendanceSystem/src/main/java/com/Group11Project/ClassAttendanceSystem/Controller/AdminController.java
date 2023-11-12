@@ -279,6 +279,18 @@ public class AdminController {
         }
     }
 
+    @DeleteMapping("/delete-all-teachers")
+    public ResponseEntity<Void> deleteAll(){
+        try {
+            adminService.deleteAllTeachers();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (Exception e) {
+            e.printStackTrace(); // Log the exception
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
     
 
 

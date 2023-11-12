@@ -117,8 +117,10 @@ public class AdminServiceImpl implements AdminService {
         courseRepository.deleteAll();
     }
 
-
-
+    @Override
+    public void deleteAllTeachers() {
+        teacherRepository.deleteAll();
+    }
 
 
 }

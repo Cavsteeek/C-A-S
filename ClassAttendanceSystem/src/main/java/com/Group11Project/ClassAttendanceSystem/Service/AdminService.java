@@ -59,4 +59,6 @@ public interface AdminService {
 
     //Delete all courses
     void deleteCourses();
+
+    void deleteAllTeachers();
 }
