@@ -103,15 +103,16 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/new-course") // create new course
+    @PostMapping("/new-course")
     public ResponseEntity<Course> newCourse(@RequestBody Course course) {
-        if (course.getCName() == null) {
-            throw new IllegalArgumentException("cName cannot be null");
-        }
         try {
-            Course course1 = adminService.saveCourse(course);
-            return new ResponseEntity<>(course1, HttpStatus.CREATED);
-        }catch (Exception e) {
+            if (course.getCName() != null) {
+                Course savedCourse = adminService.saveCourse(course);
+                return new ResponseEntity<>(savedCourse, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
             e.printStackTrace(); // Log the exception
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
