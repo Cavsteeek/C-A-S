@@ -70,18 +70,25 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public ResponseEntity<Course> updateCourseById(Long id, Course course) {
-        Optional<Course> optionalCourse = courseRepository.findById(course.getId());
+        Optional<Course> optionalCourse = courseRepository.findById(id);
         if (optionalCourse.isPresent()) {
             Course existingCourse = optionalCourse.get();
-            existingCourse.setCName(course.getCName());
-            existingCourse.setCTitle(course.getCTitle());
+
+            if (course.getCName() != null) {
+                existingCourse.setCName(course.getCName());
+            }
+
+            if (course.getCTitle() != null) {
+                existingCourse.setCTitle(course.getCTitle());
+            }
+
             courseRepository.save(existingCourse);
+
             return ResponseEntity.ok(existingCourse); // 200 OK with the updated course
         } else {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
     }
-
 
     @Override // Delete Course By Id
     public void deleteCourseById(Long id){
