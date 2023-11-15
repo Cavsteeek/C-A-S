@@ -23,8 +23,6 @@ public class Student {
     private String matricNumber;
     @Column(nullable = false, length = 8, name = "stdnt_password")
     private String password;
-    /*@Column(name = "create_time", nullable = false)
-    private LocalDateTime createTime;*/
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AttendanceRecord> attendanceRecords;

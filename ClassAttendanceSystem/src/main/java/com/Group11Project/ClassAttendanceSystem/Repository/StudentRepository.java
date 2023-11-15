@@ -15,6 +15,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     //Optional<Student> findByUsername(String username);
     List<Student> findByfName(String fName);
     List<Student> findBylName(String lName);
+    Optional<Student> findBymatNo(String matricNumber);
 
 
 }
