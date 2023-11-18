@@ -2,6 +2,7 @@ package com.Group11Project.ClassAttendanceSystem.Controller;
 
 import com.Group11Project.ClassAttendanceSystem.Model.Student;
 import com.Group11Project.ClassAttendanceSystem.Model.Teacher;
+import com.Group11Project.ClassAttendanceSystem.Request.LoginRequest;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -30,7 +31,7 @@ public class AuthenticationController {
 
     @PostMapping("/login/teacher")
     public ResponseEntity<String> teacherLogin(@RequestBody LoginRequest loginRequest) {
-        Teacher teacher = authService.authenticateTeacher(loginRequest.getUsername(), loginRequest.getPassword());
+        Teacher teacher = authService.authenticateTeacher(Integer.parseInt(loginRequest.getUsername()), loginRequest.getPassword());
         UserDetails userDetails = authService.loadUserByUsername(Integer.toString(teacher.getStaffId()));
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         String jwt = authService.generateToken(authentication);
