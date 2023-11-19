@@ -27,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public UserDetails loadUserByUsername(String username) {
 
-        Optional<Student> studentOptional = studentRepository.findBymatNo(username);
+        Optional<Student> studentOptional = studentRepository.findByUsername(username);
         if (studentOptional.isPresent()) {
             Student student = studentOptional.get();
             return UserPrincipal.create(student);
@@ -49,7 +49,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public Student authenticateStudent(String matricNumber, String password) {
-        Optional<Student> studentOptional = studentRepository.findBymatNo(matricNumber);
+        Optional<Student> studentOptional = studentRepository.findByUsername(matricNumber);
         if (studentOptional.isPresent()) {
             Student student = studentOptional.get();
             // You may want to use a password encoder here to compare passwords

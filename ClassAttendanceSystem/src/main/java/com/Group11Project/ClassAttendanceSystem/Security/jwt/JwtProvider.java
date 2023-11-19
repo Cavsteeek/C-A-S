@@ -18,7 +18,7 @@ public class JwtProvider implements JwtProviderImpl {
     private String jwtExpirationInM;
 
     @Override
-    public String generateToken(Authentication authentication) {
+    public String  generateToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + Long.parseLong(jwtExpirationInM));
