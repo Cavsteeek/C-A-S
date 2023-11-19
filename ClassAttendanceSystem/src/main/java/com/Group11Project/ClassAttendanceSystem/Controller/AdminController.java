@@ -38,7 +38,7 @@ public class AdminController {
     @DeleteMapping("/delete-student/{id}") //delete student by id
     public ResponseEntity<Void> deleteStudentById(@PathVariable Long id) {
         try {
-            deleteStudentById(id);
+            adminService.deleteStudentById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             e.printStackTrace(); // Log the exception
