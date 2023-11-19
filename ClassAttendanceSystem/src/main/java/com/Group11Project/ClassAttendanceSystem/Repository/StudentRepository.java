@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    //Optional<Student> findByUsername(String username);
+    Optional<Student> findByUsername(String matricNUmber);
     List<Student> findByfName(String fName);
     List<Student> findBylName(String lName);
 
