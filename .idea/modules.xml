@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ClassAttendanceSystem/ClassAttendanceSystem.iml" filepath="$PROJECT_DIR$/ClassAttendanceSystem/ClassAttendanceSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ClassAttendanceSystemProject.iml" filepath="$PROJECT_DIR$/.idea/ClassAttendanceSystemProject.iml" />
     </modules>
   </component>
