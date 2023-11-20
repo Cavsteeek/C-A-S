@@ -1,14 +1,11 @@
 package com.Group11Project.ClassAttendanceSystem.Auth;
 
 import com.Group11Project.ClassAttendanceSystem.Config.JwtService;
-import com.Group11Project.ClassAttendanceSystem.Model.Role;
-import com.Group11Project.ClassAttendanceSystem.Model.Student;
 import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +41,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var student = studentRepository.findByUsername(request.getPassword())
+        var student = studentRepository.findByMatricNumber(request.getPassword())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(student);
         return AuthenticationResponse.builder()
