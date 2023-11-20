@@ -21,7 +21,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    public AuthenticationResponse register(RegisterRequest request){
+   /* public AuthenticationResponse register(RegisterRequest request){
         var student = Student.builder()
                 .fName(request.getFirstname())
                 .lName(request.getLastname())
@@ -35,6 +35,8 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

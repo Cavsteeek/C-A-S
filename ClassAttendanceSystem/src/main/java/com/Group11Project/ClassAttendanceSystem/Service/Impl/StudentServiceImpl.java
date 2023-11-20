@@ -19,21 +19,4 @@ import static org.apache.catalina.realm.UserDatabaseRealm.getRoles;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
-    private final RoleRepository roleRepository;
-
-    @Override
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
-    }
-
-    @Override
-    public void addRoleToStudent(String matricNumber, String roleName) {
-        Optional<Student> studentOptional = studentRepository.findByUsername(matricNumber);
-        Role role = roleRepository.findByName(roleName);
-
-        studentOptional.ifPresent(student -> {
-            student.getRoles().add(role);
-        });
-    }
-
 }

@@ -3,7 +3,6 @@ package com.Group11Project.ClassAttendanceSystem.Controller;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationRequest;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationResponse;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationService;
-import com.Group11Project.ClassAttendanceSystem.Auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService service;
 
-    @PostMapping("student/register")
+    /*@PostMapping("student/register")
     public ResponseEntity<AuthenticationResponse> sregister(
             @RequestBody RegisterRequest request
             ){
@@ -29,7 +28,7 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
-    }
+    }*/
 
     @PostMapping("/student/login")
     public ResponseEntity<AuthenticationResponse> slogin(
