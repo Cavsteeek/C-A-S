@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -35,7 +36,11 @@ public class Student implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.name()));
+        } else {
+            return Collections.emptyList(); // or return any default authorities
+        }
     }
 
     @Override

@@ -16,7 +16,7 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    @GetMapping("/Smsg")
+    @GetMapping("/msg")
     public ResponseEntity<String> sHello(){
         return ResponseEntity.ok("HELLO");
     }

@@ -3,6 +3,7 @@ package com.Group11Project.ClassAttendanceSystem.Controller;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationRequest;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationResponse;
 import com.Group11Project.ClassAttendanceSystem.Auth.AuthenticationService;
+import com.Group11Project.ClassAttendanceSystem.Auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,31 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService service;
 
-    /*@PostMapping("student/register")
-    public ResponseEntity<AuthenticationResponse> sregister(
+    @PostMapping("studentRegister")
+    public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
             ){
         return ResponseEntity.ok(service.register(request));
     }
 
-    @PostMapping("teacher/register")
+    @PostMapping("/studentLogin")
+    public ResponseEntity<AuthenticationResponse> login(
+            @RequestBody AuthenticationRequest request
+    ){
+        return ResponseEntity.ok(service.authenticate(request));
+    }
+
+   /* @PostMapping("/teacher/login")
+    public ResponseEntity<AuthenticationResponse> tlogin(
+            @RequestBody AuthenticationRequest request
+    ){
+        return ResponseEntity.ok(service.authenticate(request));
+    }*/
+
+    /* @PostMapping("teacher/register")
     public ResponseEntity<AuthenticationResponse> tregister(
             @RequestBody RegisterRequest request
     ){
         return ResponseEntity.ok(service.register(request));
     }*/
 
-    @PostMapping("/student/login")
-    public ResponseEntity<AuthenticationResponse> slogin(
-            @RequestBody AuthenticationRequest request
-    ){
-        return ResponseEntity.ok(service.authenticate(request));
-    }
-
-    @PostMapping("/teacher/login")
-    public ResponseEntity<AuthenticationResponse> tlogin(
-            @RequestBody AuthenticationRequest request
-    ){
-        return ResponseEntity.ok(service.authenticate(request));
-    }
 }
