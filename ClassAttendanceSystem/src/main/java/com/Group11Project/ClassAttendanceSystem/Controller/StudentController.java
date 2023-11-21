@@ -16,10 +16,6 @@ public class StudentController {
 
     private final StudentService studentService;
 
-    @GetMapping("/msg")
-    public ResponseEntity<String> sHello(){
-        return ResponseEntity.ok("HELLO");
-    }
 
 
 }
