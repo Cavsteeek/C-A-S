@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "students")
-public class Student implements UserDetails {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,41 +34,4 @@ public class Student implements UserDetails {
     private List<AttendanceRecord> attendanceRecords;
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        if (role != null) {
-            return List.of(new SimpleGrantedAuthority(role.name()));
-        } else {
-            return Collections.emptyList(); // or return any default authorities
-        }
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return matricNumber;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
