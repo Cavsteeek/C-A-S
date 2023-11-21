@@ -34,4 +34,20 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getMatricNumber(),
+                        request.getPassword()
+                )
+        );
+        var user = repository.findByMatricNumber(request.getMatricNumber())
+                .orElseThrow();
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
 }
