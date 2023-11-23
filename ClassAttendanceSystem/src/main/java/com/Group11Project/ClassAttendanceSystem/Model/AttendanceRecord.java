@@ -6,11 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Table(name = "att_record")
 public class AttendanceRecord {
     @Id

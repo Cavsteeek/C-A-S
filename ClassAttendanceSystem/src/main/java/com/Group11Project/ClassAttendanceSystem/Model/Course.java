@@ -7,11 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 @Table(name = "courses")
 public class Course {
     @Id
