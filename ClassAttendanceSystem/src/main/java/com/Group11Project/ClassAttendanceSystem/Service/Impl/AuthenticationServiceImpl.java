@@ -6,6 +6,7 @@ import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
+import com.Group11Project.ClassAttendanceSystem.dto.RefreshTokenRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SigninRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,5 +38,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         jwtAuthenticationResponse.setToken(jwt);
         jwtAuthenticationResponse.setRefreshToken(refreshToken);
         return jwtAuthenticationResponse;
+    }
+
+    public JwtAuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest){
+        String userMatric = jwtService.extractUserName(refreshTokenRequest.getToken());
+        Student student = studentRepository.findByMatricNumber(userMatric).orElseThrow();
+        if (jwtService.isTokenValid(refreshTokenRequest.getToken(), student)){
+            var jwt = jwtService.generateToken(student);
+
+            JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
+
+            jwtAuthenticationResponse.setToken(jwt);
+            jwtAuthenticationResponse.setRefreshToken(refreshTokenRequest.getToken());
+            return jwtAuthenticationResponse;
+        }
+        return null;
     }
 }
