@@ -2,7 +2,6 @@ package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
 import com.Group11Project.ClassAttendanceSystem.Model.Student;
 import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
-import com.Group11Project.ClassAttendanceSystem.Repository.TeacherRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
     private StudentRepository studentRepository;
-    private TeacherRepository teacherRepository;
     private final AuthenticationManager authenticationManager;
     private JWTService jwtService;
     private PasswordEncoder passwordEncoder;

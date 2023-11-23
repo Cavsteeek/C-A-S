@@ -28,11 +28,11 @@ public class CASApplication implements CommandLineRunner {
 		Admin adminAccount = adminRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
 			Admin admin = new Admin();
-			admin.setEmail("ikem@gmail.com");
-			admin.setFirstName("Ikem");
-			admin.setLastName("Uzo");
+			admin.setEmail("admin@gmail.com");
+			admin.setFirstName("admin");
+			admin.setLastName("admin");
 			admin.setRole(Role.ADMIN);
-			admin.setPassword(new BCryptPasswordEncoder().encode("2505"));
+			admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
 			adminRepository.save(admin);
 		}
 	}
