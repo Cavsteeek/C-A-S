@@ -11,5 +11,4 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class StudentServiceImpl implements StudentService {
 
-    private final StudentRepository studentRepository;
 }

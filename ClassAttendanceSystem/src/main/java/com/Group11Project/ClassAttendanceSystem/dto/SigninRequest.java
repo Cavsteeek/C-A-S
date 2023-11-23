@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class SigninRequest {
-    private String matricNumber;
-    private String staffId;
+
+    private String email;
     private String password;
 
 }
