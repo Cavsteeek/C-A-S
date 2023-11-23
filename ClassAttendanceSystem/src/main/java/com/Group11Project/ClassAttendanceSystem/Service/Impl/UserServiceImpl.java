@@ -1,5 +1,6 @@
 package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
+import com.Group11Project.ClassAttendanceSystem.Repository.AdminRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     private final StudentRepository studentRepository;
 
+
     @Override
     public UserDetailsService userDetailsService(){
         return new UserDetailsService() {
@@ -23,4 +25,6 @@ public class UserServiceImpl implements UserService {
             }
         };
     }
+
+
 }
