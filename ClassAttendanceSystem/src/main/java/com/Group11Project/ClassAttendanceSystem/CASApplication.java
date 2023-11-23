@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @SpringBootApplication
@@ -27,7 +28,12 @@ public class CASApplication implements CommandLineRunner {
 		Admin adminAccount = adminRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
 			Admin admin = new Admin();
-			admin.setId();
+			admin.setEmail("ikem@gmail.com");
+			admin.setFirstName("Ikem");
+			admin.setLastName("Uzo");
+			admin.setRole(Role.ADMIN);
+			admin.setPassword(new BCryptPasswordEncoder().encode("2505"));
+			adminRepository.save(admin);
 		}
 	}
 }
