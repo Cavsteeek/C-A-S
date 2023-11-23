@@ -6,12 +6,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Builder
+@Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Table(name = "teachers")
 public class Teacher {
     @Id
