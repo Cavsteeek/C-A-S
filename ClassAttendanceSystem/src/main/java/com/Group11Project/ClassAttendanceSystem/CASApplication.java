@@ -24,7 +24,7 @@ public class CASApplication implements CommandLineRunner {
 	}
 
 
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		Admin adminAccount = adminRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
 			Admin admin = new Admin();
