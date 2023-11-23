@@ -1,6 +1,7 @@
 package com.Group11Project.ClassAttendanceSystem.Config;
 
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
+import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -36,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         userMatric = jwtService.extractUserName(jwt);
 
         if (StringUtils.isNotEmpty(userMatric) && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = userService.userDetailsService().loadByUsername(userMatric);
+            UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userMatric);
 
             if (jwtService.isTokenValid(jwt, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
