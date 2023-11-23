@@ -11,15 +11,16 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "admin")
 public class Admin implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String email;
+    private Integer id;
     private String firstName;
     private String lastName;
-    private Role role;
+    private String email;
     private String password;
+    private Role role;
 
 
     @Override

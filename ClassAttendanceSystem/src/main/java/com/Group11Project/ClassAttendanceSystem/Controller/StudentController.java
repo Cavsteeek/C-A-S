@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/cas/student")
 @RequiredArgsConstructor
 public class StudentController {
-
-    private final StudentService studentService;
-
-
-
+    @GetMapping
+    public ResponseEntity<String> sayHello(){
+        return ResponseEntity.ok("Welcome User");
+    }
 }

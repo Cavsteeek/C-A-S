@@ -1,11 +1,13 @@
 package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
 import com.Group11Project.ClassAttendanceSystem.Model.Student;
+import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
 import com.Group11Project.ClassAttendanceSystem.dto.RefreshTokenRequest;
+import com.Group11Project.ClassAttendanceSystem.dto.SignUpRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SigninRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,15 +20,26 @@ import java.util.HashMap;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
     private final AuthenticationManager authenticationManager;
-    private JWTService jwtService;
-    private PasswordEncoder passwordEncoder;
+    private final JWTService jwtService;
+    private final PasswordEncoder passwordEncoder;
+
+    public Student signup(SignUpRequest signUpRequest){
+        Student student = new Student();
+        student.setEmail(signUpRequest.getEmail());
+        student.setFirstname(signUpRequest.getFirstName());
+        student.setLastname(signUpRequest.getLastName());
+        student.setRole(Role.STUDENT);
+        student.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+
+        return studentRepository.save(student);
+    }
 
     public JwtAuthenticationResponse signin(SigninRequest signinRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getMatricNumber(),
                 signinRequest.getPassword()));
-        var user = studentRepository.findByMatricNumber(signinRequest.getMatricNumber())
+        var user = studentRepository.findByEmail(signinRequest.getMatricNumber())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
         var jwt = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), user);
@@ -39,8 +52,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     public JwtAuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest){
-        String userMatric = jwtService.extractUserName(refreshTokenRequest.getToken());
-        Student student = studentRepository.findByMatricNumber(userMatric).orElseThrow();
+        String userEmail = jwtService.extractUserName(refreshTokenRequest.getToken());
+        Student student = studentRepository.findByEmail(userEmail).orElseThrow();
         if (jwtService.isTokenValid(refreshTokenRequest.getToken(), student)){
             var jwt = jwtService.generateToken(student);
 

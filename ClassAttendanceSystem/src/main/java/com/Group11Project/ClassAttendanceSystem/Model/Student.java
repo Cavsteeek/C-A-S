@@ -16,22 +16,20 @@ import java.util.List;
 public class Student implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
-    private String fName;
+    private String firstname;
 
-    private String lName;
+    private String lastname;
 
     private String matricNumber;
 
-    @Column(nullable = false, length = 8, name = "stdnt_password")
-    private String password;
+    private String email;
 
+    private String password;
 
     private Role role;
 
-    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AttendanceRecord> attendanceRecords;
 
 
     @Override
@@ -41,7 +39,7 @@ public class Student implements UserDetails{
 
     @Override
     public String getUsername() {
-        return matricNumber;
+        return email;
     }
 
     @Override
