@@ -24,13 +24,23 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signup(signUpRequest));
     }
 
-    @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+    @PostMapping("/ssignin")
+    public ResponseEntity<JwtAuthenticationResponse> ssignin(@RequestBody SigninRequest signinRequest){
+        return ResponseEntity.ok(authenticationService.Ssignin(signinRequest));
     }
 
-    @PostMapping("/refresh")
-    public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
-        return ResponseEntity.ok (authenticationService.refreshToken(refreshTokenRequest));
+    @PostMapping("/srefresh")
+    public ResponseEntity<JwtAuthenticationResponse> srefresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
+        return ResponseEntity.ok (authenticationService.SrefreshToken(refreshTokenRequest));
+    }
+
+    @PostMapping("/asignin")
+    public ResponseEntity<JwtAuthenticationResponse> asignin(@RequestBody SigninRequest signinRequest){
+        return ResponseEntity.ok(authenticationService.Asignin(signinRequest));
+    }
+
+    @PostMapping("/arefresh")
+    public ResponseEntity<JwtAuthenticationResponse> arefresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
+        return ResponseEntity.ok (authenticationService.ArefreshToken(refreshTokenRequest));
     }
 }
