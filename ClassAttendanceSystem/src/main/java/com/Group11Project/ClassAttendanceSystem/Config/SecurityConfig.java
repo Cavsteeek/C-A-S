@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -31,11 +32,12 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .requestMatchers("/api/v1/cas/student").permitAll() // Allow public access
+                .requestMatchers("/dashboard").authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login") // Custom login page
-                .defaultSuccessUrl("200 ok") // Redirect after successful login
+                .defaultSuccessUrl("/dashboard") // Redirect after successful login
                 .failureUrl("/login?error")
                 .permitAll()
                 .and()
@@ -50,19 +52,23 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    /*@Bean
+    @Bean
     public UserDetailsService userDetailsService(){
         return username -> (UserDetails) studentRepository.findByMatricNumber(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-    }*/
+    }
 
-    /*@Bean
+    @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-    }*/
+    }
+
+    private PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }
 
