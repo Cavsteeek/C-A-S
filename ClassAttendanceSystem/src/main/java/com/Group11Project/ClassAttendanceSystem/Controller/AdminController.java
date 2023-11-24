@@ -1,6 +1,5 @@
 package com.Group11Project.ClassAttendanceSystem.Controller;
 
-import com.Group11Project.ClassAttendanceSystem.Service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

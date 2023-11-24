@@ -4,7 +4,7 @@ CREATE DATABASE attendancesystem;
 -- Use the "attendancesystem" database
 USE attendancesystem;
 
--- Create the "student" table
+-- Create the "user" table
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     f_name VARCHAR(50) NOT NULL, -- 

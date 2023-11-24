@@ -7,13 +7,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
 @Data
 @Table(name = "students")
-public class Student implements UserDetails{
+public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

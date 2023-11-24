@@ -1,14 +1,13 @@
 package com.Group11Project.ClassAttendanceSystem.Repository;
 
-import com.Group11Project.ClassAttendanceSystem.Model.Admin;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
+import com.Group11Project.ClassAttendanceSystem.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface AdminRepository extends JpaRepository<Admin, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    User findByRole(Role role);
 
-     Optional<Admin> findByEmail(String email);
-
-     Admin findByRole(Role role);
 }

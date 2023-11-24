@@ -1,10 +1,8 @@
 package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
-import com.Group11Project.ClassAttendanceSystem.Model.Admin;
-import com.Group11Project.ClassAttendanceSystem.Model.Student;
+import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
-import com.Group11Project.ClassAttendanceSystem.Repository.AdminRepository;
-import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
+import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
@@ -22,27 +20,26 @@ import java.util.HashMap;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
-    private final StudentRepository studentRepository;
-    private final AdminRepository adminRepository;
+    private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;
     private final PasswordEncoder passwordEncoder;
 
-    public Student signup(SignUpRequest signUpRequest){
-        Student student = new Student();
-        student.setEmail(signUpRequest.getEmail());
-        student.setFirstname(signUpRequest.getFirstName());
-        student.setLastname(signUpRequest.getLastName());
-        student.setRole(Role.STUDENT);
-        student.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+    public User signup(SignUpRequest signUpRequest){
+        User user = new User();
+        user.setEmail(signUpRequest.getEmail());
+        user.setFirstname(signUpRequest.getFirstName());
+        user.setLastname(signUpRequest.getLastName());
+        user.setRole(Role.STUDENT);
+        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
 
-        return studentRepository.save(student);
+        return userRepository.save(user);
     }
 
-    public JwtAuthenticationResponse Ssignin(SigninRequest signinRequest){
+    public JwtAuthenticationResponse signin(SigninRequest signinRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(),
                 signinRequest.getPassword()));
-        var user = studentRepository.findByEmail(signinRequest.getEmail())
+        var user = userRepository.findByEmail(signinRequest.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
         var jwt = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), user);
@@ -54,11 +51,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return jwtAuthenticationResponse;
     }
 
-    public JwtAuthenticationResponse SrefreshToken(RefreshTokenRequest refreshTokenRequest){
+    public JwtAuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest){
         String userEmail = jwtService.extractUserName(refreshTokenRequest.getToken());
-        Student student = studentRepository.findByEmail(userEmail).orElseThrow();
-        if (jwtService.isTokenValid(refreshTokenRequest.getToken(), student)){
-            var jwt = jwtService.generateToken(student);
+        User user = userRepository.findByEmail(userEmail).orElseThrow();
+        if (jwtService.isTokenValid(refreshTokenRequest.getToken(), user)){
+            var jwt = jwtService.generateToken(user);
 
             JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
 
@@ -69,33 +66,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return null;
     }
 
-    public JwtAuthenticationResponse Asignin(SigninRequest signinRequest){
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(),
-                signinRequest.getPassword()));
-        var admin = adminRepository.findByEmail(signinRequest.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Username or Password"));
-        var jwt = jwtService.generateToken(admin);
-        var refreshToken = jwtService.generateRefreshToken(new HashMap<>(), admin);
 
-        JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
-
-        jwtAuthenticationResponse.setToken(jwt);
-        jwtAuthenticationResponse.setRefreshToken(refreshToken);
-        return jwtAuthenticationResponse;
-    }
-
-    public JwtAuthenticationResponse ArefreshToken(RefreshTokenRequest refreshTokenRequest){
-        String userEmail = jwtService.extractUserName(refreshTokenRequest.getToken());
-        Admin admin = adminRepository.findByEmail(userEmail).orElseThrow();
-        if (jwtService.isTokenValid(refreshTokenRequest.getToken(), admin)){
-            var jwt = jwtService.generateToken(admin);
-
-            JwtAuthenticationResponse jwtAuthenticationResponse = new JwtAuthenticationResponse();
-
-            jwtAuthenticationResponse.setToken(jwt);
-            jwtAuthenticationResponse.setRefreshToken(refreshTokenRequest.getToken());
-            return jwtAuthenticationResponse;
-        }
-        return null;
-    }
 }

@@ -26,6 +26,7 @@ public class JWTServiceImpl implements JWTService {
                 .compact();
     }
 
+
     public String generateRefreshToken(Map<String, Object> extraClaims, UserDetails userDetails){
         return Jwts
                 .builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
@@ -56,6 +57,7 @@ public class JWTServiceImpl implements JWTService {
         final String username = extractUserName(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
+
 
     private boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());

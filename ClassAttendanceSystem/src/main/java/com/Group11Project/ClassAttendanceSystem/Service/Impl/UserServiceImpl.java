@@ -1,7 +1,6 @@
 package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
-import com.Group11Project.ClassAttendanceSystem.Repository.AdminRepository;
-import com.Group11Project.ClassAttendanceSystem.Repository.StudentRepository;
+import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final StudentRepository studentRepository;
+    private final UserRepository userRepository;
 
 
     @Override
@@ -20,7 +19,7 @@ public class UserServiceImpl implements UserService {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return studentRepository.findByEmail(username)
+                return userRepository.findByEmail(username)
                         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
             }
         };

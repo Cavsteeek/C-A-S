@@ -1,6 +1,6 @@
 package com.Group11Project.ClassAttendanceSystem.Controller;
 
-import com.Group11Project.ClassAttendanceSystem.Model.Student;
+import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
 import com.Group11Project.ClassAttendanceSystem.dto.RefreshTokenRequest;
@@ -20,27 +20,18 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Student> signup(@RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest){
         return ResponseEntity.ok(authenticationService.signup(signUpRequest));
     }
 
-    @PostMapping("/ssignin")
-    public ResponseEntity<JwtAuthenticationResponse> ssignin(@RequestBody SigninRequest signinRequest){
-        return ResponseEntity.ok(authenticationService.Ssignin(signinRequest));
+    @PostMapping("/signin")
+    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
+        return ResponseEntity.ok(authenticationService.signin(signinRequest));
     }
 
-    @PostMapping("/srefresh")
-    public ResponseEntity<JwtAuthenticationResponse> srefresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
-        return ResponseEntity.ok (authenticationService.SrefreshToken(refreshTokenRequest));
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
+        return ResponseEntity.ok (authenticationService.refreshToken(refreshTokenRequest));
     }
 
-    @PostMapping("/asignin")
-    public ResponseEntity<JwtAuthenticationResponse> asignin(@RequestBody SigninRequest signinRequest){
-        return ResponseEntity.ok(authenticationService.Asignin(signinRequest));
-    }
-
-    @PostMapping("/arefresh")
-    public ResponseEntity<JwtAuthenticationResponse> arefresh(@RequestBody RefreshTokenRequest refreshTokenRequest){
-        return ResponseEntity.ok (authenticationService.ArefreshToken(refreshTokenRequest));
-    }
 }

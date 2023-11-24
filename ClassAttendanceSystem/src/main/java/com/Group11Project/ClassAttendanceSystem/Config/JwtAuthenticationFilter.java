@@ -1,6 +1,5 @@
 package com.Group11Project.ClassAttendanceSystem.Config;
 
-import com.Group11Project.ClassAttendanceSystem.Service.AdminService;
 import com.Group11Project.ClassAttendanceSystem.Service.JWTService;
 import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import io.micrometer.common.util.StringUtils;
@@ -24,7 +23,6 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JWTService jwtService;
     private final UserService userService;
-    private final AdminService adminService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
@@ -40,23 +38,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null){
             UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
-            UserDetails adminDetails = adminService.userDetailsService().loadUserByUsername(userEmail);
 
             if (jwtService.isTokenValid(jwt, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                         userDetails,null,userDetails.getAuthorities()
-                );
-
-                token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                securityContext.setAuthentication(token);
-                SecurityContextHolder.setContext(securityContext);
-            }
-
-            if (jwtService.isTokenValid(jwt, adminDetails)){
-                SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        adminDetails,null,adminDetails.getAuthorities()
                 );
 
                 token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

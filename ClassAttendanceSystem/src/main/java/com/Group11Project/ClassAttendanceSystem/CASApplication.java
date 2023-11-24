@@ -1,8 +1,8 @@
 package com.Group11Project.ClassAttendanceSystem;
 
-import com.Group11Project.ClassAttendanceSystem.Model.Admin;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
-import com.Group11Project.ClassAttendanceSystem.Repository.AdminRepository;
+import com.Group11Project.ClassAttendanceSystem.Model.User;
+import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class CASApplication implements CommandLineRunner {
 	@Autowired
-	private AdminRepository adminRepository;
+	private UserRepository userRepository;
 
 	public static void main(String[] args) {
 		try {
@@ -25,15 +25,15 @@ public class CASApplication implements CommandLineRunner {
 
 
 	public void run(String... args) {
-		Admin adminAccount = adminRepository.findByRole(Role.ADMIN);
+		User adminAccount = userRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
-			Admin admin = new Admin();
-			admin.setEmail("admin@gmail.com");
-			admin.setFirstName("admin");
-			admin.setLastName("admin");
-			admin.setRole(Role.ADMIN);
-			admin.setPassword(new BCryptPasswordEncoder().encode("admin"));
-			adminRepository.save(admin);
+			User user = new User();
+			user.setEmail("admin@gmail.com");
+			user.setFirstname("admin");
+			user.setLastname("admin");
+			user.setRole(Role.ADMIN);
+			user.setPassword(new BCryptPasswordEncoder().encode("admin"));
+			userRepository.save(user);
 		}
 	}
 }
