@@ -38,17 +38,17 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/v1/cas/student").hasAnyAuthority(Role.STUDENT.name())
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(userAuthenticationProvider()).addFilterBefore(
-                        jwtAuthenticationFilter,  UsernamePasswordAuthenticationFilter.class
-                )
-                .authenticationProvider(adminAuthenticationProvider()).addFilterBefore(
+                .authenticationProvider(auth()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class
+                )
+                .authenticationProvider(authenticationProvider()).addFilterBefore(
+                        jwtAuthenticationFilter,  UsernamePasswordAuthenticationFilter.class
                 );
         return http.build();
     }
 
     @Bean
-    public AuthenticationProvider userAuthenticationProvider() {
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userService.userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
@@ -56,11 +56,11 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public AuthenticationProvider adminAuthenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(adminService.userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
+    public AuthenticationProvider auth(){
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(adminService.userDetailsService());
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
     }
 
     @Bean
@@ -68,9 +68,15 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 }
+
+
+
+
+
 
