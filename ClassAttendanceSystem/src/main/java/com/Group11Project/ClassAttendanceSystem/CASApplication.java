@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.List;
+
 
 @SpringBootApplication
 public class CASApplication implements CommandLineRunner {
@@ -25,7 +27,7 @@ public class CASApplication implements CommandLineRunner {
 
 
 	public void run(String... args) {
-		User adminAccount = userRepository.findByRole(Role.ADMIN);
+		List<User> adminAccount = userRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
 			User user = new User();
 			user.setEmail("admin@gmail.com");

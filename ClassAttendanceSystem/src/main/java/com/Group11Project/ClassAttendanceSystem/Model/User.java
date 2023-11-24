@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "students")
+@Table(name = "user")
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +20,6 @@ public class User implements UserDetails{
     private String firstname;
 
     private String lastname;
-
-    private String matricNumber;
 
     private String email;
 
