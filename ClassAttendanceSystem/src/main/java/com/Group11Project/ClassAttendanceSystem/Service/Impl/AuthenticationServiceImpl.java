@@ -36,6 +36,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return userRepository.save(user);
     }
 
+    public User tsignup(SignUpRequest signUpRequest){
+        User user = new User();
+        user.setEmail(signUpRequest.getEmail());
+        user.setFirstname(signUpRequest.getFirstName());
+        user.setLastname(signUpRequest.getLastName());
+        user.setRole(Role.TEACHER);
+        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+
+        return userRepository.save(user);
+    }
+
     public JwtAuthenticationResponse signin(SigninRequest signinRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(),
                 signinRequest.getPassword()));
