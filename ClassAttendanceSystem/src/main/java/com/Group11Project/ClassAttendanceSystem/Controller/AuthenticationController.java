@@ -1,5 +1,6 @@
 package com.Group11Project.ClassAttendanceSystem.Controller;
 
+import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
@@ -19,15 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody SignUpRequest signUpRequest){
-        return ResponseEntity.ok(authenticationService.signup(signUpRequest));
+    @PostMapping("/Ssignup")
+    public ResponseEntity<User> Studentsignup(@RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(authenticationService.signupAsStudent(signUpRequest));
     }
 
-    @PostMapping("/tsignup")
-    public ResponseEntity<User> tsignup(@RequestBody SignUpRequest signUpRequest){
-        return ResponseEntity.ok(authenticationService.tsignup(signUpRequest));
+    @PostMapping("/Tsignup")
+    public ResponseEntity<User> Teachersignup(@RequestBody SignUpRequest signUpRequest){
+        return ResponseEntity.ok(authenticationService.signupAsTeacher(signUpRequest));
     }
+
 
     @PostMapping("/signin")
     public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
