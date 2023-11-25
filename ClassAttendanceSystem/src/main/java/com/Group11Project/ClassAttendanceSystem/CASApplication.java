@@ -27,7 +27,7 @@ public class CASApplication implements CommandLineRunner {
 
 
 	public void run(String... args) {
-		List<User> adminAccount = userRepository.findByRole(Role.ADMIN);
+		User adminAccount = userRepository.findByRole(Role.ADMIN);
 		if (null == adminAccount){
 			User user = new User();
 			user.setEmail("admin@gmail.com");
