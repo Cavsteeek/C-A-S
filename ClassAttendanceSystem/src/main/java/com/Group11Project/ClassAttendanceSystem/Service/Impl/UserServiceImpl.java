@@ -1,5 +1,7 @@
 package com.Group11Project.ClassAttendanceSystem.Service.Impl;
 
+import com.Group11Project.ClassAttendanceSystem.Model.Role;
+import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +27,7 @@ public class UserServiceImpl implements UserService {
         };
     }
 
+    public void deleteByRole(){
 
+    };
 }

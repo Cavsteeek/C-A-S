@@ -7,8 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("api/v1/cas/admin")
 @RequiredArgsConstructor
@@ -30,6 +28,10 @@ public class AdminController {
     public ResponseEntity<User> findAllTeachers(){
         User teacherList = userRepository.findByRole(Role.TEACHER);
         return ResponseEntity.ok(teacherList);
+
+    }
+    @DeleteMapping("/delete-all-students")
+    public ResponseEntity<Void> deleteAllStudents(){
 
     }
 }
