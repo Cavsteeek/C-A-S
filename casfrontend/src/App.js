@@ -1,12 +1,14 @@
 import './App.css';
 import Appbar from './components/Appbar';
-import Student from './components/Student';
+import StudentLogin from './components/StudentLogin';
+import StudentSignUp from './components/StudentSignUp';
 
 function App() {
   return (
     <div className="App">
     <Appbar/>
-    <Student/>
+    <StudentLogin/>
+    {/* <StudentSignUp/> */}
     </div>
   );
 }
