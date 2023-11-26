@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/cas/admin")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AdminController {
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;

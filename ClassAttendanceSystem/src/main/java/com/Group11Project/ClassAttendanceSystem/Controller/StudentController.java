@@ -15,6 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/cas/student")
 @RequiredArgsConstructor
+@CrossOrigin
 public class StudentController {
     private final AttendanceService attendanceService;
     @GetMapping
