@@ -1,17 +1,22 @@
 package com.Group11Project.ClassAttendanceSystem.Controller;
 
+import com.Group11Project.ClassAttendanceSystem.Model.Course;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Model.User;
+import com.Group11Project.ClassAttendanceSystem.Repository.CourseRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/cas/admin")
 @RequiredArgsConstructor
 public class AdminController {
     private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
     @GetMapping
     public ResponseEntity<String> sayHello(){
         return ResponseEntity.ok("Welcome Admin");
@@ -34,4 +39,9 @@ public class AdminController {
     public ResponseEntity<Void> deleteAllStudents(){
 
     }*/
+    @GetMapping("/get-all-courses")
+    public ResponseEntity<List<Course>> findAllCourse(){
+        List<Course> courseList = courseRepository.findAll();
+        return ResponseEntity.ok(courseList);
+    }
 }
