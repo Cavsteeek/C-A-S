@@ -21,12 +21,11 @@ public class AttendanceRecord {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
-    private Date Date;
+    private Date date;
 
-    private Integer courseId;
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
 

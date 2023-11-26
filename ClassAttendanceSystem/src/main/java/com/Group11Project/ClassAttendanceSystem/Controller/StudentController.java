@@ -1,6 +1,7 @@
 package com.Group11Project.ClassAttendanceSystem.Controller;
 
 
+import com.Group11Project.ClassAttendanceSystem.Model.Course;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Service.AttendanceService;
@@ -27,7 +28,8 @@ public class StudentController {
             @RequestBody Map<String, Object> requestBody){
         if (student.getRole() == Role.STUDENT){
             Integer courseId = (Integer) requestBody.get("courseId");
-            attendanceService.signAttendance(student, courseId);
+            Course course = attendanceService.getCourseById(courseId);
+            attendanceService.signAttendance(student, course);
         }
         return ResponseEntity.ok("Attendance Marked");
     }
