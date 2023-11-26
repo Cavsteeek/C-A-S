@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,7 +9,6 @@ import StudentSignUp from './StudentSignUp';
 
 export default function Appbar() {
     return (
-        <Router>
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static" sx={{ background: 'black' }}>
                     <Toolbar>
@@ -24,6 +23,5 @@ export default function Appbar() {
                     </Toolbar>
                 </AppBar>
             </Box>
-        </Router>
     );
 }
