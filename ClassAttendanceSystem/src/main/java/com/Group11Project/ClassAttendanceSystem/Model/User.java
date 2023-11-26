@@ -27,7 +27,8 @@ public class User implements UserDetails{
 
     private Role role;
 
-
+    @OneToMany(mappedBy = "student")
+    private List<AttendanceRecord> attendanceRecords;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

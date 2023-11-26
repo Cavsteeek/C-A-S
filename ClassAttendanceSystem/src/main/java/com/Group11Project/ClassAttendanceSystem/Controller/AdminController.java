@@ -30,8 +30,8 @@ public class AdminController {
         return ResponseEntity.ok(teacherList);
 
     }
-    @DeleteMapping("/delete-all-students")
+    /*@DeleteMapping("/delete-all-students")
     public ResponseEntity<Void> deleteAllStudents(){
 
-    }
+    }*/
 }
