@@ -24,8 +24,8 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-students")
-    public ResponseEntity<User> findAllStudents(){
-        User studentList = userRepository.findByRole(Role.STUDENT);
+    public ResponseEntity<List<User>> findAllStudents(){
+        List<User> studentList = userRepository.findByRolee(Role.STUDENT);
         return ResponseEntity.ok(studentList);
 
     }
