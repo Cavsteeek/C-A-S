@@ -8,7 +8,10 @@ function App() {
   return (
     <div className="App">
     <Appbar/>
-    <StudentLogin/>
+    <Routes>
+          <Route path="/signup" element={<StudentSignUp />} />
+          <Route path="/login" element={<StudentLogin />} />
+        </Routes>
     </div>
   );
 }

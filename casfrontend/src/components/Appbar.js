@@ -15,9 +15,14 @@ export default function Appbar() {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'white'}}>
                             _- C-A-S -_
                         </Typography>
-                        <Link to="/StudentSignup" style={{ textDecoration: 'none' }}>
+                        <Link to="/signup" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
                                 Sign Up
+                            </Button>
+                        </Link>
+                        <Link to="/login" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
+                                Login
                             </Button>
                         </Link>
                     </Toolbar>

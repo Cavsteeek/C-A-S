@@ -6,13 +6,13 @@ import { Container, Paper, Button } from '@mui/material';
 
 export default function StudentSignUp() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
-    const [firstname, setFirstname]=useState('')
-    const [lastname, setLastname]=useState('')
+    const [firstName, setFirstname]=useState('')
+    const [lastName, setLastname]=useState('')
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
     const handleClick=(e)=>{
         e.preventDefault()
-        const student={firstname, lastname, email, password}
+        const student={firstName, lastName, email, password}
         console.log(student)
         fetch("http://localhost:8080/api/v1/cas/auth/Ssignup",{
             method:"POST",
@@ -35,12 +35,12 @@ export default function StudentSignUp() {
                     autoComplete="off"
                 >
                     <TextField id="outlined-basic" label="Firstname" variant="outlined" fullWidth 
-                    value={firstname}
+                    value={firstName}
                     onChange={(e)=>setFirstname(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Lastname" variant="outlined" fullWidth 
-                    value={lastname}
-                    onChange={(e)=>setFirstname(e.target.value)}
+                    value={lastName}
+                    onChange={(e)=>setLastname(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Student Email" variant="outlined" fullWidth 
                     value={email}
