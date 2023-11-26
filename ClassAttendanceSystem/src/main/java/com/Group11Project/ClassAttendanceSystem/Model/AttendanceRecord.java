@@ -22,4 +22,13 @@ public class AttendanceRecord {
     private Course course;
 
     private Date Date;
+
+    private Integer courseId;
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+
+
 }
