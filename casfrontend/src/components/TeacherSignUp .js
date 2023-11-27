@@ -4,20 +4,20 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Container, Paper, Button } from '@mui/material';
 
-export default function StudentSignUp() {
+export default function TeacherSignUp() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
     const [firstName, setFirstname]=useState('')
     const [lastName, setLastname]=useState('')
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
-    const handleClick=(e)=>{
+    const handleClick1=(e)=>{
         e.preventDefault()
-        const student={firstName, lastName, email, password}
-        console.log(student)
-        fetch("http://localhost:8080/api/v1/cas/auth/Ssignup",{
+        const teacher={firstName, lastName, email, password}
+        console.log(teacher)
+        fetch("http://localhost:8080/api/v1/cas/auth/Tsignup",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
-            body:JSON.stringify(student)
+            body:JSON.stringify(teacher)
         }).then(() =>{
             console.log("Sign Up Successful")
         })
@@ -25,7 +25,7 @@ export default function StudentSignUp() {
     return (
         <Container>
             <Paper elevation={3} style={paperStyle}>
-                <h1 style={{color:"black"}}>Signup as Student</h1>
+                <h1 style={{color:"black"}}>Signup as Teacher</h1>
                 <Box
                     component="form"
                     sx={{
@@ -42,17 +42,18 @@ export default function StudentSignUp() {
                     value={lastName}
                     onChange={(e)=>setLastname(e.target.value)}
                     />
-                    <TextField id="outlined-basic" label="Student Email" variant="outlined" fullWidth 
+                    <TextField id="outlined-basic" label="Teacher Email" variant="outlined" fullWidth 
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     />
-                    <TextField id="outlined-basic" label="Student Password" variant="outlined" fullWidth 
+                    <TextField id="outlined-basic" label="Teacher Password" variant="outlined" fullWidth 
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     />
-                    <Button variant="contained"  sx={{ backgroundColor: 'black', color: 'white' }} onClick={handleClick}>Sign Up</Button>
+                    <Button variant="contained"  sx={{ backgroundColor: 'black', color: 'white' }} onClick={handleClick1}>Sign Up</Button>
                 </Box>
             </Paper>
+
         </Container>
     );
 }

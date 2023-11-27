@@ -27,7 +27,7 @@ public class AdminController {
     @GetMapping("/get-all-users-by-role/{role}")
     public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role) {
         try {
-            List<User> userList = userRepository.findByRole(role);
+            List<User> userList = userRepository.findAllByRole(role);
             return ResponseEntity.ok(userList);
         } catch (Exception e) {
             // Log the exception or return a custom error response
@@ -36,21 +36,7 @@ public class AdminController {
     }
 
 
-    /*@GetMapping("/get-all-students")
-    public ResponseEntity<List<User>> getAllStudents(){
-        List<User> studentList = userRepository.findByRole(Role.STUDENT);
-        return ResponseEntity.ok(studentList);
-
-    }
-
-
-    @GetMapping("/get-all-teachers")
-    public ResponseEntity<List<User>> getAllTeachers(){
-        List<User> teacherList = userRepository.findByRole(Role.TEACHER);
-        return ResponseEntity.ok(teacherList);
-
-    }
-    /*@DeleteMapping("/delete-all-students")
+    @DeleteMapping("/delete-all-students")
     public ResponseEntity<Void> deleteAllStudents(){
 
     }
@@ -58,5 +44,5 @@ public class AdminController {
     public ResponseEntity<List<Course>> findAllCourse(){
         List<Course> courseList = courseRepository.findAll();
         return ResponseEntity.ok(courseList);
-    }*/
+    }
 }

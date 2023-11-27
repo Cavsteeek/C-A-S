@@ -17,12 +17,22 @@ export default function Appbar() {
                         </Typography>
                         <Link to="/signup" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
-                                Sign Up
+                                Sign Up as Student
                             </Button>
                         </Link>
                         <Link to="/login" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
-                                Login
+                                Login as Student
+                            </Button>
+                        </Link>
+                        <Link to="/tsignup" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
+                                Sign Up as Teacher
+                            </Button>
+                        </Link>
+                        <Link to="/tlogin" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
+                                Login as Teacher
                             </Button>
                         </Link>
                     </Toolbar>
