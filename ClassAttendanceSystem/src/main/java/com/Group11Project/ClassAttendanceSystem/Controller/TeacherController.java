@@ -4,6 +4,7 @@ import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,9 +25,9 @@ public class TeacherController
         return ResponseEntity.ok("Welcome Teacher");
     }
 
-    @GetMapping("/get-all-students")
+    @GetMapping("/find-all-students")
     public ResponseEntity<List<User>> findAllStudents(){
-        List<User> studentList = userRepository.findByRolee(Role.STUDENT);
+        List<User> studentList = userRepository.findByRole(Role.STUDENT);
         return ResponseEntity.ok(studentList);
 
     }

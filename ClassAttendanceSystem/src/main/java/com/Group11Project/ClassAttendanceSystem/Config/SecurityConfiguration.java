@@ -33,21 +33,23 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/cas/auth/**")
                         .permitAll()
                         .requestMatchers("/api/v1/cas/admin/**").hasAnyAuthority(Role.ADMIN.name())
-                        .requestMatchers("/api/v1/cas/student/**").hasAnyAuthority(Role.STUDENT.name())
-                        .requestMatchers("/api/v1/cas/teacher/**").hasAnyAuthority(Role.TEACHER.name())
+                        .requestMatchers("/api/v1/cas/student/sign-attendance").hasAnyAuthority(Role.STUDENT.name())
+                        .requestMatchers("/api/v1/cas/student").hasAnyAuthority(Role.STUDENT.name())
+                        .requestMatchers("/api/v1/cas/teacher/find-all-students").hasAnyAuthority(Role.TEACHER.name())
+                        .requestMatchers("/api/v1/cas/teacher").hasAnyAuthority(Role.TEACHER.name())
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter,  UsernamePasswordAuthenticationFilter.class
-                )
-                .cors().configurationSource(request -> {
+                );
+                /*.cors().configurationSource(request -> {
                     CorsConfiguration corsConfig = new CorsConfiguration();
                     corsConfig.addAllowedOrigin("http://localhost:3000");
                     corsConfig.addAllowedMethod("*");
                     corsConfig.addAllowedHeader("*");
                     corsConfig.setAllowCredentials(true);
                     return corsConfig;
-                });
+                });*/
         return http.build();
     }
 

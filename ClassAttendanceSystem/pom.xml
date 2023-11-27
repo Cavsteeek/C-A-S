@@ -63,6 +63,21 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.5</version>
 		</dependency>
+        <dependency>
+            <groupId>net.eusashead.hateoas</groupId>
+            <artifactId>spring-responseentitybuilder</artifactId>
+            <version>1.1.0.RELEASE</version>
+        </dependency>
+		<dependency>
+			<groupId>net.eusashead.hateoas</groupId>
+			<artifactId>spring-responseentitybuilder</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>net.eusashead.hateoas</groupId>
+			<artifactId>spring-responseentitybuilder</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<build>

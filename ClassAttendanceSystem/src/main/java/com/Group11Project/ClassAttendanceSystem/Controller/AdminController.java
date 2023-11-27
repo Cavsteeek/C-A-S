@@ -24,15 +24,15 @@ public class AdminController {
     }
 
     @GetMapping("/get-all-students")
-    public ResponseEntity<List<User>> findAllStudents(){
-        List<User> studentList = userRepository.findByRolee(Role.STUDENT);
+    public ResponseEntity<List<User>> getAllStudents(){
+        List<User> studentList = userRepository.findByRole(Role.STUDENT);
         return ResponseEntity.ok(studentList);
 
     }
 
     @GetMapping("/get-all-teachers")
-    public ResponseEntity<User> findAllTeachers(){
-        User teacherList = userRepository.findByRole(Role.TEACHER);
+    public ResponseEntity<List<User>> getAllTeachers(){
+        List<User> teacherList = userRepository.findByRole(Role.TEACHER);
         return ResponseEntity.ok(teacherList);
 
     }
