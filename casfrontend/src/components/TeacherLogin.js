@@ -12,7 +12,7 @@ export default function TeacherLogin() {
     const handleClick1=(e)=>{
         e.preventDefault()
         const teacher={ email, password }
-        //console.log(teacher)
+        
         fetch("http://localhost:8080/api/v1/cas/auth/signin",{
             method:"POST",
             headers:{"Content-Type":"application/json"},

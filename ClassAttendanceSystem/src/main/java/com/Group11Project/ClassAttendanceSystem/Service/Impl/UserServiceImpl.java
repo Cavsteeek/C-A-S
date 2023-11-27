@@ -27,6 +27,12 @@ public class UserServiceImpl implements UserService {
         };
     }
 
+
+    @Override
+    public boolean emailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     public void deleteByRole(){
 
     };

@@ -13,15 +13,26 @@ export default function TeacherSignUp() {
     const handleClick1=(e)=>{
         e.preventDefault()
         const teacher={firstName, lastName, email, password}
-        console.log(teacher)
+        
         fetch("http://localhost:8080/api/v1/cas/auth/Tsignup",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(teacher)
-        }).then(() =>{
-            console.log("Sign Up Successful")
+        }).then(response => {
+            if (response.ok) {
+                console.log("Sign Up Successful");
+                alert("Sign Up Successful");
+            } else {
+                console.log("Sign Up Failed");
+                alert("Sign Up Failed");
+            }
         })
-    }
+        .catch(error => {
+            console.error("Error during signup:", error);
+            alert("Error during signup. Please try again.");
+        });
+}
+
     return (
         <Container>
             <Paper elevation={3} style={paperStyle}>

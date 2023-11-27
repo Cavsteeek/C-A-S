@@ -3,6 +3,7 @@ package com.Group11Project.ClassAttendanceSystem.Controller;
 import com.Group11Project.ClassAttendanceSystem.Model.Role;
 import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Service.AuthenticationService;
+import com.Group11Project.ClassAttendanceSystem.Service.UserService;
 import com.Group11Project.ClassAttendanceSystem.dto.JwtAuthenticationResponse;
 import com.Group11Project.ClassAttendanceSystem.dto.RefreshTokenRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SignUpRequest;
@@ -17,14 +18,21 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
+    private final UserService userService;
 
     @PostMapping("/Ssignup")
-    public ResponseEntity<User> Studentsignup(@RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<?> Studentsignup(@RequestBody SignUpRequest signUpRequest) {
+        if (userService.emailExists(signUpRequest.getEmail())) {
+            return ResponseEntity.badRequest().body("User with this email already exists");
+        }
         return ResponseEntity.ok(authenticationService.signupAsStudent(signUpRequest));
     }
 
     @PostMapping("/Tsignup")
-    public ResponseEntity<User> Teachersignup(@RequestBody SignUpRequest signUpRequest){
+    public ResponseEntity<?> Teachersignup(@RequestBody SignUpRequest signUpRequest) {
+        if (userService.emailExists(signUpRequest.getEmail())) {
+            return ResponseEntity.badRequest().body("User with this email already exists");
+        }
         return ResponseEntity.ok(authenticationService.signupAsTeacher(signUpRequest));
     }
 

@@ -8,18 +8,30 @@ export default function StudentLogin() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
+    
     const handleClick=(e)=>{
         e.preventDefault()
         const student={email,password}
-        console.log(student)
+    
         fetch("http://localhost:8080/api/v1/cas/auth/signin",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(student)
-        }).then(() =>{
-            console.log("Login Successful")
+        }).then(response => {
+            if (response.ok) {
+                console.log("Login Successful");
+                alert("Login Successful");
+            } else {
+                console.log("Login Failed");
+                alert("Login Failed");
+            }
         })
-    }
+        .catch(error => {
+            console.error("Error during login:", error);
+            alert("Error during login. Please try again.");
+        });
+}
+
     return (
         <Container>
             <Paper elevation={3} style={paperStyle}>
