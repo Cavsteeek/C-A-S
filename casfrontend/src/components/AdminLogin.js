@@ -8,30 +8,31 @@ export default function AdminLogin() {
     const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" }
     const [email, setEmail]=useState('')
     const [password, setPassword]=useState('')
+
     const handleClick2 = (e) => {
-        e.preventDefault();
-        const admin = { email, password };
-    
+        e.preventDefault()
+        const admin = { email, password }
+
         fetch("http://localhost:8080/api/v1/cas/auth/signin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(admin),
+            body: JSON.stringify(admin)
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Login failed");
+            .then(response => {
+                if (response.ok) {
+                    console.log("Login Successful");
+                    alert("Login Successful");
+                } else {
+                    console.log("Login Failed");
+                    alert("Login Failed");
                 }
-                return response.json();
             })
-            .then((data) => {
-                console.log("Login Successful");
-                alert("Login Successful");
-            })
-            .catch((error) => {
-                console.error("Login failed", error);
-                alert("Login failed");
+            .catch(error => {
+                console.error("Error during login:", error);
+                alert("Error during login. Please try again.");
             });
-    };
+    }
+
     return (
         <Container>
             <Paper elevation={3} style={paperStyle}>
