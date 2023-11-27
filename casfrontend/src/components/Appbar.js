@@ -13,7 +13,7 @@ export default function Appbar() {
                 <AppBar position="static" sx={{ background: 'black' }}>
                     <Toolbar>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'white'}}>
-                            _- C-A-S -_
+                            C-A-S
                         </Typography>
                         <Link to="/signup" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
@@ -33,6 +33,11 @@ export default function Appbar() {
                         <Link to="/tlogin" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
                                 Login as Teacher
+                            </Button>
+                        </Link>
+                        <Link to="/alogin" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
+                                Admin Login
                             </Button>
                         </Link>
                     </Toolbar>

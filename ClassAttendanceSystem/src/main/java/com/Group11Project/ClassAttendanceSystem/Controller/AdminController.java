@@ -36,10 +36,10 @@ public class AdminController {
     }
 
 
-    @DeleteMapping("/delete-all-students")
+    /*@DeleteMapping("/delete-all-students")
     public ResponseEntity<Void> deleteAllStudents(){
 
-    }
+    }*/
     @GetMapping("/get-all-courses")
     public ResponseEntity<List<Course>> findAllCourse(){
         List<Course> courseList = courseRepository.findAll();
