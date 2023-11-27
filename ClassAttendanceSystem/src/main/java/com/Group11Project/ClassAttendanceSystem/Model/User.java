@@ -1,6 +1,7 @@
 package com.Group11Project.ClassAttendanceSystem.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +29,7 @@ public class User implements UserDetails{
     private Role role;
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<AttendanceRecord> attendanceRecords;
 
     @Override

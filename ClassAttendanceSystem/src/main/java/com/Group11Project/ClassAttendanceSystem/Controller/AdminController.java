@@ -6,6 +6,7 @@ import com.Group11Project.ClassAttendanceSystem.Model.User;
 import com.Group11Project.ClassAttendanceSystem.Repository.CourseRepository;
 import com.Group11Project.ClassAttendanceSystem.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,25 @@ public class AdminController {
         return ResponseEntity.ok("Welcome Admin");
     }
 
-    @GetMapping("/get-all-students")
+    @GetMapping("/get-all-users-by-role/{role}")
+    public ResponseEntity<List<User>> getAllUsersByRole(@PathVariable Role role) {
+        try {
+            List<User> userList = userRepository.findByRole(role);
+            return ResponseEntity.ok(userList);
+        } catch (Exception e) {
+            // Log the exception or return a custom error response
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+
+    /*@GetMapping("/get-all-students")
     public ResponseEntity<List<User>> getAllStudents(){
         List<User> studentList = userRepository.findByRole(Role.STUDENT);
         return ResponseEntity.ok(studentList);
 
     }
+
 
     @GetMapping("/get-all-teachers")
     public ResponseEntity<List<User>> getAllTeachers(){
@@ -39,10 +53,10 @@ public class AdminController {
     /*@DeleteMapping("/delete-all-students")
     public ResponseEntity<Void> deleteAllStudents(){
 
-    }*/
+    }
     @GetMapping("/get-all-courses")
     public ResponseEntity<List<Course>> findAllCourse(){
         List<Course> courseList = courseRepository.findAll();
         return ResponseEntity.ok(courseList);
-    }
+    }*/
 }
