@@ -12,6 +12,10 @@ export default function TeacherLogin() {
     const handleClick1=(e)=>{
         e.preventDefault()
         const teacher={ email, password }
+        if (!teacher.email || !teacher.password) {
+            alert("Please fill in all required fields.");
+            return;
+        }
         
         fetch("http://localhost:8080/api/v1/cas/auth/signin",{
             method:"POST",

@@ -11,7 +11,12 @@ export default function StudentLogin() {
     
     const handleClick=(e)=>{
         e.preventDefault()
+        
         const student={email,password}
+        if (!student.email || !student.password) {
+            alert("Please fill in all required fields.");
+            return;
+        }
     
         fetch("http://localhost:8080/api/v1/cas/auth/signin",{
             method:"POST",
@@ -45,10 +50,14 @@ export default function StudentLogin() {
                     autoComplete="off"
                 >
                     <TextField id="outlined-basic" label="Student Email" variant="outlined" fullWidth 
+                    required
+                    type='email'
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Student Password" variant="outlined" fullWidth 
+                    required
+                    type='password'
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     />

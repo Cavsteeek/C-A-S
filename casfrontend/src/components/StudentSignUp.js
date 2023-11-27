@@ -12,25 +12,46 @@ export default function StudentSignUp() {
     const [password, setPassword]=useState('')
     const handleClick=(e)=>{
         e.preventDefault()
+
+        if (!validateName(firstName) || !validateName(lastName) || !validateEmail(email) || !validatePassword(password)) {
+            alert("Invalid input. Please check the provided fields.");
+            return;
+        }
         const student={firstName, lastName, email, password}
         
         fetch("http://localhost:8080/api/v1/cas/auth/Ssignup",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(student)
-        }).then(response => {
+        }).then((response) => {
             if (response.ok) {
                 console.log("Sign Up Successful");
                 alert("Sign Up Successful");
+            } else if (response.status === 400) {
+                console.log("Sign Up Failed: User With Email Already Exists");
+                alert("Sign Up Failed: User With Email Already Exists");
             } else {
                 console.log("Sign Up Failed");
                 alert("Sign Up Failed");
             }
         })
-        .catch(error => {
-            console.error("Error during signup:", error);
-            alert("Error during signup. Please try again.");
+        .catch((error) => {
+            console.error("Error during Sign Up:", error);
+            alert("Error during Sign Up. Please try again.");
         });
+}
+const validateName = (name) => {
+    return name.length >= 5;
+}
+
+const validateEmail = (email) => {
+    // Simple email validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+const validatePassword = (password) => {
+    return password.length >= 8;
 }
     return (
         <Container>
@@ -45,18 +66,24 @@ export default function StudentSignUp() {
                     autoComplete="off"
                 >
                     <TextField id="outlined-basic" label="Firstname" variant="outlined" fullWidth 
+                    required
                     value={firstName}
                     onChange={(e)=>setFirstname(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Lastname" variant="outlined" fullWidth 
+                    required
                     value={lastName}
                     onChange={(e)=>setLastname(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Student Email" variant="outlined" fullWidth 
+                    required
+                    type='email'
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Student Password" variant="outlined" fullWidth 
+                    required
+                    type="password"
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     />

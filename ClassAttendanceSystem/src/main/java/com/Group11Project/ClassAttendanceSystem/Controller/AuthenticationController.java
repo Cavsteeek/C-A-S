@@ -10,6 +10,7 @@ import com.Group11Project.ClassAttendanceSystem.dto.SignUpRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SigninRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

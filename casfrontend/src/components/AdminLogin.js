@@ -11,7 +11,12 @@ export default function AdminLogin() {
 
     const handleClick2 = (e) => {
         e.preventDefault()
+        
         const admin = { email, password }
+        if (!admin.email || !admin.password) {
+            alert("Please fill in all required fields.");
+            return;
+        }
 
         fetch("http://localhost:8080/api/v1/cas/auth/signin", {
             method: "POST",
@@ -46,10 +51,14 @@ export default function AdminLogin() {
                     autoComplete="off"
                 >
                     <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth 
+                    required
+                    type='email'
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     />
                     <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth 
+                    required
+                    type='password'
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     />
