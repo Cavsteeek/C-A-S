@@ -7,5 +7,6 @@ public interface UserService {
 
     boolean emailExists(String email);
     void deleteStudents();
+    void deleteStudentById(Integer studentId);
 
 }

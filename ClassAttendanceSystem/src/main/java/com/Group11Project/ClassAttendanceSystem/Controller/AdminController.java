@@ -45,6 +45,11 @@ public class AdminController {
         userService.deleteStudents();
         return ResponseEntity.ok().build();
     }
+    @DeleteMapping("/delete-student/{studentId}")
+    public ResponseEntity<Void> deleteStudentById(@PathVariable Integer studentId) {
+        userService.deleteStudentById(studentId);
+        return ResponseEntity.ok().build();
+    }
 
     @GetMapping("/get-all-courses")
     public ResponseEntity<List<Course>> findAllCourse(){
