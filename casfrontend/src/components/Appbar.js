@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import StudentSignUp from './StudentSignUp';
+
 
 export default function Appbar() {
     return (
@@ -23,11 +23,6 @@ export default function Appbar() {
                         <Link to="/login" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
                                 Login as Student
-                            </Button>
-                        </Link>
-                        <Link to="/tsignup" style={{ textDecoration: 'none' }}>
-                            <Button variant="contained" sx={{ backgroundColor: 'black', color: 'white' }}>
-                                Sign Up as Teacher
                             </Button>
                         </Link>
                         <Link to="/tlogin" style={{ textDecoration: 'none' }}>

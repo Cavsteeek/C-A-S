@@ -1,5 +1,6 @@
 package com.Group11Project.ClassAttendanceSystem.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class Course {
     private String courseCode;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnore
     private List<AttendanceRecord> attendanceRecords;
 
 }

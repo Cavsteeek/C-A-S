@@ -43,21 +43,18 @@ public class AuthenticationController {
     @PostMapping("/Ssignin")
     public ResponseEntity<JwtAuthenticationResponse> Ssignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        System.out.println("Received Role: " + user.getRole());
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/Tsignin")
     public ResponseEntity<JwtAuthenticationResponse> Tsignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        System.out.println("Received Role: " + user.getRole());
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/Asignin")
     public ResponseEntity<JwtAuthenticationResponse> Asignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        System.out.println("Received Role: " + user.getRole());
         return ResponseEntity.ok(user);
     }
 

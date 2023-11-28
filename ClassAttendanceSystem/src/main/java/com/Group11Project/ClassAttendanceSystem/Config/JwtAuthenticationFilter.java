@@ -56,7 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request,response);
     }
-    // Inside JwtAuthenticationFilter
+
 
 
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
