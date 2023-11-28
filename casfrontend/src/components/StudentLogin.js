@@ -18,7 +18,7 @@ export default function StudentLogin() {
             return;
         }
     
-        fetch("http://localhost:8080/api/v1/cas/auth/signin",{
+        fetch("http://localhost:8080/api/v1/cas/auth/Ssignin",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(student)

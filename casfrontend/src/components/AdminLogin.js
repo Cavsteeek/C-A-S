@@ -23,7 +23,7 @@ export default function AdminLogin() {
             return;
         }
 
-        fetch("http://localhost:8080/api/v1/cas/auth/signin", {
+        fetch("http://localhost:8080/api/v1/cas/auth/Asignin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(admin)

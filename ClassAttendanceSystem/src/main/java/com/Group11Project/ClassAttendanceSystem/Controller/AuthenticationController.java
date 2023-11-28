@@ -30,41 +30,35 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.signupAsStudent(signUpRequest));
     }
 
-    @PostMapping("/Tsignup")
+    /*@PostMapping("/Tsignup")
     public ResponseEntity<?> Teachersignup(@RequestBody SignUpRequest signUpRequest) {
         if (userService.emailExists(signUpRequest.getEmail())) {
             return ResponseEntity.badRequest().body("User with this email already exists");
         }
         return ResponseEntity.ok(authenticationService.signupAsTeacher(signUpRequest));
-    }
+    }*/
 
 
 
     @PostMapping("/Ssignin")
     public ResponseEntity<JwtAuthenticationResponse> Ssignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        if (user.getRole() != Role.STUDENT) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+        System.out.println("Received Role: " + user.getRole());
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/Tsignin")
     public ResponseEntity<JwtAuthenticationResponse> Tsignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        if (user.getRole() != Role.TEACHER) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+        System.out.println("Received Role: " + user.getRole());
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/Asignin")
     public ResponseEntity<JwtAuthenticationResponse> Asignin(@RequestBody SigninRequest signinRequest) {
         JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
-        if (user.getRole() != Role.ADMIN) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
-        }
-        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+        System.out.println("Received Role: " + user.getRole());
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/refresh")
