@@ -9,6 +9,7 @@ import com.Group11Project.ClassAttendanceSystem.dto.RefreshTokenRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SignUpRequest;
 import com.Group11Project.ClassAttendanceSystem.dto.SigninRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +40,30 @@ public class AuthenticationController {
 
 
 
-    @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@RequestBody SigninRequest signinRequest){
+    @PostMapping("/Ssignin")
+    public ResponseEntity<JwtAuthenticationResponse> Ssignin(@RequestBody SigninRequest signinRequest) {
+        JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
+        if (user.getRole() != Role.STUDENT) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+    }
+
+    @PostMapping("/Tsignin")
+    public ResponseEntity<JwtAuthenticationResponse> Tsignin(@RequestBody SigninRequest signinRequest) {
+        JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
+        if (user.getRole() != Role.TEACHER) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
+        return ResponseEntity.ok(authenticationService.signin(signinRequest));
+    }
+
+    @PostMapping("/Asignin")
+    public ResponseEntity<JwtAuthenticationResponse> Asignin(@RequestBody SigninRequest signinRequest) {
+        JwtAuthenticationResponse user = authenticationService.signin(signinRequest);
+        if (user.getRole() != Role.ADMIN) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
+        }
         return ResponseEntity.ok(authenticationService.signin(signinRequest));
     }
 
