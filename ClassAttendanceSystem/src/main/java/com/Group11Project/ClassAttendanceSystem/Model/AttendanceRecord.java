@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name = "attendance_record")
 public class AttendanceRecord {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

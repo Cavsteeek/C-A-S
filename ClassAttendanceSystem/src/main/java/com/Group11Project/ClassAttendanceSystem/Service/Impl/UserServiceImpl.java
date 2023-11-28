@@ -33,7 +33,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.existsByEmail(email);
     }
 
-    public void deleteByRole(){
-
-    };
+    @Override
+    public void deleteStudents() {
+        userRepository.deleteAllByRole(Role.STUDENT);
+    }
 }
