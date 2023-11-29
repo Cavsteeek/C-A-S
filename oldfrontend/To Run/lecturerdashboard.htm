@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lecturerDash.css">
+    <title>Lecturer Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Lecturer Dashboard</h1>
+        <button id="logoutBtn">Logout</button>
+    </header>
+
+    <section class="content">
+        <h2>Students</h2>
+        <table id="studentsTable">
+            <!-- Student details will be populated here dynamically -->
+            <!-- Table header -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+                <!-- Student details will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <h2>Attendance Records</h2>
+        <table id="attendanceTable">
+             <!-- Table header -->
+             <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Student ID</th>
+                    <th>Present</th>
+                </tr>
+            </thead>
+            <!-- Table body -->
+            <tbody>
+                <!-- Attendance records will be dynamically added here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script src="lecturerdash.js"></script>
+</body>
+</html>
