@@ -1,72 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>
-    Student
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="student.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Sign Up</title>
+    <link rel="stylesheet" href="student.css">
+    <link rel="stylesheet" href="cl-icon/css/all.min.css">
+    <script src="student.js"></script>
 </head>
-<body style="display: flex; justify-content:center; align-items: center; height: 100vh;overflow: hidden;">
-  <div class="form-wrap">
-		<div class="tabs">
-			<h3 class="signup-tab"><a class="active" href="#signup-tab-content" style="border-top-left-radius: 10px; text-align: left; padding-left: 20px;">Sign Up</a></h3>
-		</div>
-			<div id="signup-tab-content" class="active" style=" padding-left: 20px; padding-right: 20px;">
-				<form class="signup-form" action="" method="post">
-					<input type="email" class="input" id="email" autocomplete="on" placeholder="Email">
-					<input type="text" class="input" id="firstName" autocomplete="on" placeholder="Firstname">
-					<input type="text" class="input" id="lastName" autocomplete="on" placeholder="Lastname"> 
-					<input type="password" class="input" id="password" autocomplete="on" placeholder="Password">
-					<input type="submit" class="button" value="Sign Up" style="margin-bottom: 10px;">
-				</form>
-                
-				<div class="help">
-					<!-- <p> </p> -->
-					<p class="para-2" style="color: black; font-weight: 600;">
-						Already have an account? <a href="studentlogin.htm">Login here</a>
-					  </p>
-				</div>
-			</div>
-		</div>		
-	</div>
-	<script> 
-		document.getElementById('signupForm').addEventListener('submit', function (event) {
-		event.preventDefault();
-  
-		const email = document.getElementById('email').value;
-		const firstName = document.getElementById('firstName').value;
-		const lastName = document.getElementById('lastName').value;
-		const password = document.getElementById('password').value;
-  
-		const signupData = {
-		  email: email,
-		  firstName: firstName,
-		  lastName: lastName,
-		  password: password
-		};
-  
-		fetch('http://localhost:8080/api/v1/cas/auth/Ssignup', {
-		  method: 'POST',
-		  headers: {
-			'Content-Type': 'application/json'
-		  },
-		  body: JSON.stringify(signupData)
-		})
-		.then(response => response.json())
-		.then(data => {
-		  // Handle the response as needed
-		  console.log(data);
-  
-		  // Redirect to the login page or handle the response accordingly
-		  window.location.href = 'studentlogin.htm';
-		})
-		.catch(error => {
-		  console.error('Error during signup:', error);
-		  // Handle the error, show an alert, or perform other actions
-		});
-	  });
-	  </script>
+<body>
+    <div class="wrapper">
+        <form action="" class="form">
+            <h1 class="title">Student</h1>
+			<div class="inp">
+                <input type="text" name="" id="firstName" class="input" placeholder="Firstname">
+                <i class="user"></i>
+            </div>
+			<div class="inp">
+                <input type="text" name="" id="lastName" class="input" placeholder="Lastname">
+                <i class="user"></i>
+            </div>
+            <div class="inp">
+                <input type="email" name="" id="email" class="input" placeholder="Email">
+                <i class="user"></i>
+            </div>
+            <div class="inp">
+                <input type="password" name="" id="password" class="input" placeholder="Password">
+                <i class="lockey"></i>
+            </div>
+            <button class ="submit" type="button" onclick="authenticateStudentSignUp()">SignUp</button>
+        </form>
+        </form>
+        <div></div>
+        <div class="banner">
+            <h1 class="wel_text"></h1><br>
+            <p class="para"></p>
+			<p class="para-2" style="color: black; font-weight: 600;">
+				 <a href="studentlogin.htm">Login now</a>
+		   </p>
+        </div>
+    </div>
 </body>
 </html>
+    
