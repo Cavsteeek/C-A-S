@@ -25,6 +25,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JWTService jwtService;
     private final PasswordEncoder passwordEncoder;
 
+
+
+    /* signUpT -> user.setRole(ROLE.Teacher)
+       signUpS -> user.setRole(ROLE.STUDENT)
+     */
+
     public User signup(SignUpRequest signUpRequest, Role role){
         User user = new User();
         user.setEmail(signUpRequest.getEmail());
@@ -35,7 +41,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         return userRepository.save(user);
     }
-
 
     public JwtAuthenticationResponse signin(SigninRequest signinRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signinRequest.getEmail(),
